@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from modeling.sync_batchnorm.batchnorm import SynchronizedBatchNorm2d
-from cbam import *
+# from cbam import *
 from coordattn import *
 
 class Decoder(nn.Module):
@@ -32,7 +32,7 @@ class Decoder(nn.Module):
                                        nn.ReLU(),
                                        nn.Dropout(0.1),
                                        nn.Conv2d(256, num_classes, kernel_size=1, stride=1))
-        self.cbam = CBAM(256)
+        # self.cbam = CBAM(256)
         self.coordattn = CoordAtt(256, 256)
         self._init_weight()
         

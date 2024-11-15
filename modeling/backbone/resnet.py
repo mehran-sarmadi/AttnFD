@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 from modeling.sync_batchnorm.batchnorm import SynchronizedBatchNorm2d
 import torch.nn.functional as F
-from cbam import *
+# from cbam import *
 from coordattn import *
 
 
@@ -112,11 +112,11 @@ class ResNet(nn.Module):
         # self.layer4 = self._make_layer(block, 512, layers[3], stride=strides[3], dilation=dilations[3], BatchNorm=BatchNorm)
         
         if layers[-1] == 2:
-            self.cbam = CBAM(512)
+            # self.cbam = CBAM(512)
             self.coordattn = CoordAtt(256, 256)
 
         else:
-            self.cbam = CBAM(2048)
+            # self.cbam = CBAM(2048)
             self.coordattn = CoordAtt(2048, 2048)
 
         self._init_weight()
