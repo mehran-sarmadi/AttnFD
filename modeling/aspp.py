@@ -82,7 +82,9 @@ class ASPP(nn.Module):
 
         x = self.conv1(x)
         x = self.bn1(x)
+        x = self.coordattn(x)
         x = self.relu(x)
+        
 
         return self.dropout(x)
 
