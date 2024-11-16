@@ -113,7 +113,7 @@ class ResNet(nn.Module):
         
         if layers[-1] == 2:
             # self.cbam = CBAM(512)
-            self.coordattn = CoordAtt(256, 256)
+            self.coordattn = CoordAtt(512, 512)
 
         else:
             # self.cbam = CBAM(2048)
