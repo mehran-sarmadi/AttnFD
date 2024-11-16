@@ -36,6 +36,7 @@ class CoordAtt(nn.Module):
         
 
     def forward(self, x):
+        print('\n\nUsing CoordAtt....\n\n')
         identity = x
         
         n,c,h,w = x.size()
