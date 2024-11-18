@@ -67,7 +67,8 @@ class Decoder(nn.Module):
         x = self.last_conv[0:7](x)
         feat1 = x
         # atten = self.cbam(x)
-        attn = self.coordattn(x)
+        #attn = self.coordattn(x)
+        attn = torch.tensor([])
         x = self.last_conv[7:](x)
 
         return [feat1], [atten], x
