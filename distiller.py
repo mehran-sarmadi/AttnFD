@@ -40,7 +40,10 @@ class Distiller(nn.Module):
         t_feats, t_attens, t_out = self.t_net.extract_feature(x)
         s_feats, s_attens, s_out = self.s_net.extract_feature(x)
         feat_num = len(t_feats)
-        
+        for att in t_attens:
+            print(att.shape)
+        for att in s_attens:
+            print(att.shape)
         loss_attnfd = 0
         # for i in range(3, feat_num):
         #     b,c,h,w = t_attens[i-3].shape
