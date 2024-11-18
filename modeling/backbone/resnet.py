@@ -213,7 +213,7 @@ class ResNet(nn.Module):
         feat3 = self.layer3(feat2)
         feat4 = self.layer4(feat3)
         # atten = self.cbam(feat4)
-        attn = self.coordattn(feat4)
+        atten = self.coordattn(feat4)
         out = F.relu(feat4)
         
         
