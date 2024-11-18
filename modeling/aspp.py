@@ -110,7 +110,7 @@ class ASPP(nn.Module):
         x = self.relu(x)
         feat = x
         # atten = self.cbam(x)
-        attn = self.coordattn(x)
+        atten = self.coordattn(x)
 
         return [feat], [atten], x
 
