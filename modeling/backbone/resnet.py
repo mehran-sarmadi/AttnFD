@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 from modeling.sync_batchnorm.batchnorm import SynchronizedBatchNorm2d
 import torch.nn.functional as F
-from cbam import *
+# from cbam import *
 
 class BasicBlock(nn.Module):
     expansion = 1
@@ -109,11 +109,11 @@ class ResNet(nn.Module):
             self.layer4 = self._make_MG_unit(block, 512, blocks=blocks, stride=strides[3], dilation=dilations[3], BatchNorm=BatchNorm)
         # self.layer4 = self._make_layer(block, 512, layers[3], stride=strides[3], dilation=dilations[3], BatchNorm=BatchNorm)
         
-        if layers[-1] == 2:
-            self.cbam = CBAM(512)
-        else:
-            self.cbam = CBAM(2048)
-        self._init_weight()
+        # if layers[-1] == 2:
+        #     self.cbam = CBAM(512)
+        # else:
+        #     self.cbam = CBAM(2048)
+        # self._init_weight()
         
         
 
@@ -205,12 +205,12 @@ class ResNet(nn.Module):
         feat2 = self.layer2(feat1)
         feat3 = self.layer3(feat2)
         feat4 = self.layer4(feat3)
-        atten = self.cbam(feat4)
+        # atten = self.cbam(feat4)
         out = F.relu(feat4)
         
         
 
-        return [feat1, feat2, feat3, feat4], [atten], out, low_level_feat
+        return [feat1, feat2, feat3, feat4], [torch.tensor([])], out, low_level_feat
 
     def _init_weight(self):
         for m in self.modules():
