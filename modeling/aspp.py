@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from modeling.sync_batchnorm.batchnorm import SynchronizedBatchNorm2d
-from cbam import *
+# from cbam import *
 
 
 class _ASPPModule(nn.Module):
@@ -64,7 +64,7 @@ class ASPP(nn.Module):
         self.bn1 = BatchNorm(256)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(0.5)
-        self.cbam = CBAM(256)
+        # self.cbam = CBAM(256)
         self._init_weight()
         
         
@@ -106,9 +106,10 @@ class ASPP(nn.Module):
         #atten = self.cbam(x)
         x = self.relu(x)
         feat = x
-        atten = self.cbam(x)
+        # atten = self.cbam(x)
+        
 
-        return [feat], [atten], x
+        return [feat], [torch.tensor([])], x
 
     def _init_weight(self):
         for m in self.modules():
