@@ -42,14 +42,14 @@ class Distiller(nn.Module):
         feat_num = len(t_feats)
         
         loss_attnfd = 0
-        # for i in range(3, feat_num):
-        #     b,c,h,w = t_attens[i-3].shape
+        for i in range(3, feat_num):
+            b,c,h,w = t_attens[i-3].shape
             
-        #     s_attens[i-3] = self.Connectors[i](s_attens[i-3])
-        #     loss_attnfd += (s_attens[i-3] / torch.norm(s_attens[i-3], p = 2) - t_attens[i-3] / torch.norm(t_attens[i-3], p = 2)).pow(2).sum() / (b)
-        b,c,h,w = t_attens[1].shape
-        loss_attnfd += (s_attens[1] / torch.norm(s_attens[1], p = 2) - t_attens[1] / torch.norm(t_attens[1], p = 2)).pow(2).sum() / (b)
-        loss_attnfd += (s_attens[2] / torch.norm(s_attens[2], p = 2) - t_attens[2] / torch.norm(t_attens[2], p = 2)).pow(2).sum() / (b)
+            s_attens[i-3] = self.Connectors[i](s_attens[i-3])
+            loss_attnfd += (s_attens[i-3] / torch.norm(s_attens[i-3], p = 2) - t_attens[i-3] / torch.norm(t_attens[i-3], p = 2)).pow(2).sum() / (b)
+        # b,c,h,w = t_attens[1].shape
+        # loss_attnfd += (s_attens[1] / torch.norm(s_attens[1], p = 2) - t_attens[1] / torch.norm(t_attens[1], p = 2)).pow(2).sum() / (b)
+        # loss_attnfd += (s_attens[2] / torch.norm(s_attens[2], p = 2) - t_attens[2] / torch.norm(t_attens[2], p = 2)).pow(2).sum() / (b)
         loss_attnfd = loss_attnfd * self.args.attn_lambda
 
         return s_out, loss_attnfd
